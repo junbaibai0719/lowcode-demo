@@ -37,9 +37,18 @@ const SamplePreview = () => {
       dataSource: projectDataSource,
     } = projectSchema;
     const componentsMap: any = {};
-    componentsMapArray.forEach((component: any) => {
-      componentsMap[component.componentName] = component;
+
+    resourceList.forEach(({ id }) => {
+      const projectSchema = getProjectSchemaFromLocalStorage(scenarioName, id);
+      const {
+        componentsMap: componentsMapArray,
+      } = projectSchema;
+      componentsMapArray.forEach((component: any) => {
+        componentsMap[component.componentName] = component;
+      });
     });
+
+
     const pageSchema = componentsTree[0];
 
     const libraryMap = {};
